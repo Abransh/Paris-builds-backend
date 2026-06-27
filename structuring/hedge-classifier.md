@@ -60,11 +60,14 @@ Both modes feed the same Test 2 + scoring.
 ## 5. Classification decision
 ```
 if link is None:                              -> unrelated   ("no causal channel")
-if abs(move_adverse) < minEffect
-   or confidence < minConfidence:             -> unrelated   ("effect too small / low confidence")
+if abs(move_adverse) < minEffect:             -> unrelated   ("effect too small")
 if not paysInAdverse:                         -> expression  ("contract pays in equity's favorable state")
 if hedgeQuality < minHedgeQuality:            -> expression  ("offset too small to call a hedge")
 else:                                         -> hedge
+# NOTE: confidence < minConfidence does NOT change the class. It sets warnings += "low-confidence"
+# (and is surfaced as a separate field so the UI can widen disclosure / shrink default size).
+# In discovery mode you may DROP a pair only when it is BOTH low-confidence AND low-effect.
+# Template-mode pairs always have a curated causal link, so they are never "unrelated" on confidence alone.
 ```
 
 ## 6. Thresholds (the knobs P2 calibrates - do not hardcode in P1)
@@ -94,8 +97,9 @@ def assess_pair(inp, params):
                          window=params.eventWindow)
         move_adverse, confidence = es.mean_car_given_adverse, es.confidence
 
-    if abs(move_adverse) < params.minEffect or confidence < params.minConfidence:
-        return unrelated("effect too small / low confidence", move_adverse, confidence)
+    if abs(move_adverse) < params.minEffect:
+        return unrelated("effect too small", move_adverse, confidence)
+    low_confidence = confidence < params.minConfidence   # flag only; does NOT demote the class
 
     # Test 2a - right sign
     pays_in_adverse = (link.expectedDirection == "adverse") and move_adverse < 0
