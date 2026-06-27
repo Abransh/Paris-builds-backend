@@ -80,6 +80,8 @@ Linkage plus three more conditions:
 
 Example (pharma + FDA): sign ok, move_adverse 25%, offset 96%, residual 22% (market/sector), timing ok -> **hedge**.
 
+> Full implementation for P1 (formulas, thresholds, pseudocode, output object): see `hedge-classifier.md`.
+
 ## 6. Combo templates - and the one knob P2 calibrates
 We ship 5 hand-curated "views" (`templates.md`): defense+election, pharma+drug-trial, shipping+Hormuz, rate-sensitive+Fed, crypto-proxy+legislation. Each template hard-codes everything except **`move_adverse`**, which is the single assumption P2 owns and refines with history. Start with sensible estimates; calibrate later.
 
