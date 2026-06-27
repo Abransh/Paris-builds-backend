@@ -69,5 +69,5 @@ interface OrderPlan {
 ## Questions for P1 before this is frozen
 1. Naming/placement: OK to live in `/contracts/structuring.ts`? Or do you want a different module split?
 2. Do you want `qty` in shares or in notional USD (and you convert at fill)? I assumed shares for equity, contracts for events.
-3. Should `OrderPlan` be all-or-nothing at the OMS level (atomic basket)? See SPEC.md open question 2.
+3. Should `OrderPlan` be all-or-nothing at the OMS level (atomic basket)? **Decided: yes, atomic / all-or-nothing.**
 4. Idempotency key - do you want it on `StrategyIntent` or added by the OMS?

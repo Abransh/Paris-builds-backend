@@ -118,8 +118,8 @@ These are your levers as P2, not P1's:
 4. The definition of "residual risk" the classifier reports.
 5. The payoff/UX framing the user sees.
 
-## 11. Open questions to decide together (P2 + P1)
-1. Full offset vs a premium-budget cap (e.g. never spend >X% of notional on hedge)?
-2. All-or-nothing basket execution, or allow a primary-only fill if the hedge can't fill?
-3. Does `move_adverse` live as JSON in this repo, or in a config service P1 owns?
-4. Multi-outcome markets in v1, or strictly binary for the demo?
+## 11. Decisions (resolved with P1)
+1. **Hedge sizing:** full offset by default, with an **optional premium cap** (`premiumCapPct`) so users don't overpay on expensive hedges.
+2. **Execution:** **atomic / all-or-nothing** basket - never leave the user silently unhedged if the hedge leg can't fill.
+3. **`move_adverse` source:** lives in **`templates.json`** in this repo (P2-editable); revisit a config service only if it grows.
+4. **Scope:** **binary (yes/no) event contracts only** for v1; multi-outcome is deferred.

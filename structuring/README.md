@@ -21,8 +21,8 @@ Diagrams: `methodology-scheme.png`, `linkage-hedge-graph.png`, `demo-results.png
 - **P3** = the builder UI.
 See METHODOLOGY.md section 8.
 
-## Open questions waiting on P1 (Abransh)
-1. Full offset vs a premium-budget cap.
-2. Atomic basket vs allow a primary-only fill if the hedge can't fill.
-3. `move_adverse` source - templates.json vs a config service.
-4. Binary only vs multi-outcome markets in v1.
+## Decisions (resolved with P1)
+1. Hedge sizing: **full offset by default + optional premium cap**.
+2. Execution: **atomic / all-or-nothing** basket.
+3. `move_adverse` source: **`templates.json`** (P2-editable).
+4. Scope: **binary (yes/no) event contracts only** for v1.
