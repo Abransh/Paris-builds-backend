@@ -33,6 +33,9 @@ interface OrderPlan {
   intentRef: string;         // echo of the originating intent
   legs: OrderLeg[];
   hedgeRatio: number;        // hedge_cost / primary_notional (see SPEC.md s4)
+  hedgeClassification: "hedge" | "expression" | "unrelated"; // see METHODOLOGY.md s5
+  hedgeQuality: number;      // 0..1, share of adverse-case loss the hedge covers (dollar-offset)
+  residualRiskPct: number;   // 0..1, share of equity risk NOT covered (basis risk) - disclose to client
   estCost: number;           // total USD to enter
   estMaxLoss: number;        // estimated worst case after hedge
   outcomePreview: {          // for the UI payoff display
