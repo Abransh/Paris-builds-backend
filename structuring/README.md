@@ -12,6 +12,7 @@ The product / strategy / quant rulebook. **P2 owns the methodology; P1 implement
 7. **builder-ux.md** - the 3 tiers as screens, for P3.
 8. **regulatory-approach.md** - compliance stance + phasing.
 9. **yc-onepager.md** - the pitch.
+10. **yc-application.md** - draft answers to the standard YC application questions.
 
 Diagrams: `methodology-scheme.png`, `linkage-hedge-graph.png`, `demo-results.png`, `product-tiers.png`.
 
